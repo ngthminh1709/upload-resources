@@ -16,6 +16,12 @@ export class ResourcesEntity extends BaseEntity {
   })
   is_keep: number
 
+  @Column({
+    type: 'tinyint',
+    default: 0    // 0 - image, 1 - video, 2 - file
+  })
+  type: number
+
   @Index()
   @Column({
     type: 'text',
