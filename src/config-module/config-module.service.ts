@@ -32,7 +32,7 @@ export class ConfigServiceProvider {
         host: process.env.REDIS_HOST,
         port: parseInt(process.env.REDIS_PORT),
         password: process.env.REDIS_PASSWORD,
-        db: 1
+        db: parseInt(process.env.REDIS_DB)
       }
     }
   }
