@@ -6,6 +6,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModuleModule } from "./config-module/config-module.module";
 import { ConfigServiceProvider } from "./config-module/config-module.service";
 import { JwtModule } from "@nestjs/jwt";
+import { QueueModule } from "./queue/queue.module";
 
 @Module({
   imports: [
@@ -37,9 +38,10 @@ import { JwtModule } from "@nestjs/jwt";
       inject: [ConfigServiceProvider],
     }),
 
-    //aplication
+    //application
     NestjsFormDataModule,
     UploadModule,
+    QueueModule,
   ],
 })
 export class AppModule {}
