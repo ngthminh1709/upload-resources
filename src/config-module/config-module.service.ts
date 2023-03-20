@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 import { redisStore } from "cache-manager-redis-store";
 import { TimeToLive } from "../enums/common.enum";
+import { JwtModuleOptions } from "@nestjs/jwt";
 
 @Injectable()
 export class ConfigServiceProvider {
@@ -18,6 +19,12 @@ export class ConfigServiceProvider {
       // logging: true,
     };
   }
+
+  createJwtOptions(): JwtModuleOptions {
+    return {
+    };
+  }
+
 
 
   async createRedisOptions(): Promise<any> {

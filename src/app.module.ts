@@ -1,13 +1,11 @@
 import { CacheModule, Module } from "@nestjs/common";
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UploadModule } from './upload/upload.module';
-import { NestjsFormDataModule } from 'nestjs-form-data';
+import { UploadModule } from "./upload/upload.module";
+import { NestjsFormDataModule } from "nestjs-form-data";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModuleModule } from "./config-module/config-module.module";
 import { ConfigServiceProvider } from "./config-module/config-module.service";
-
+import { JwtModule } from "@nestjs/jwt";
 
 @Module({
   imports: [
@@ -19,6 +17,13 @@ import { ConfigServiceProvider } from "./config-module/config-module.service";
       imports: [ConfigModuleModule],
       useFactory: (config: ConfigServiceProvider) =>
         config.createTypeOrmOptions(),
+      inject: [ConfigServiceProvider],
+    }),
+
+    //jwt
+    JwtModule.registerAsync({
+      imports: [ConfigModuleModule],
+      useFactory: (config: ConfigServiceProvider) => config.createJwtOptions(),
       inject: [ConfigServiceProvider],
     }),
 
@@ -36,7 +41,5 @@ import { ConfigServiceProvider } from "./config-module/config-module.service";
     NestjsFormDataModule,
     UploadModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
