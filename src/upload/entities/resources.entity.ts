@@ -1,23 +1,23 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, Index, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({
   name: 'resources'
 })
 export class ResourcesEntity extends BaseEntity {
-  @PrimaryColumn({
+  @PrimaryGeneratedColumn({
     type: 'int',
   })
   id: number;
 
   @Index()
   @Column({
-    type: 'tinyint',
+    type: 'smallint',
     default: 1    // 0 - unkeep, 1 - keep
   })
   is_keep: number
 
   @Column({
-    type: 'tinyint',
+    type: 'smallint',
     default: 0    // 0 - image, 1 - video, 2 - file
   })
   type: number
